@@ -1,0 +1,26 @@
+table Medidas
+	lineageTag: da93dffb-8cf9-4a8e-8217-d7c3efdfdfcd
+
+	measure 'Total Clientes' = COUNTROWS(d_Clientes)
+		formatString: 0
+		lineageTag: 3172acb9-31f1-4309-a5f4-58ffe6124dd2
+
+	column 'Coluna 1'
+		dataType: string
+		lineageTag: ba139d21-7477-4c66-b9dc-fb69616b6170
+		summarizeBy: none
+		sourceColumn: Coluna 1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

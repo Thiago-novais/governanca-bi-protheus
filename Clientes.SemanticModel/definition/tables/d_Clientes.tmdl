@@ -1,4 +1,4 @@
-table Consulta1
+table d_Clientes
 	lineageTag: 37fa4851-93a6-4a4a-874e-f627fb9a978b
 
 	column A1_FILIAL
@@ -2395,13 +2395,15 @@ table Consulta1
 
 		annotation SummarizationSetBy = Automatic
 
-	partition Consulta1 = m
+	partition d_Clientes = m
 		mode: import
 		source =
 				let
 				    Fonte = Sql.Database("45.6.155.226,37002", "CHSNA6_139573_PR_PD", [Query="SELECT * #(lf)FROM SA1010"])
 				in
 				    Fonte
+
+	changedProperty = Name
 
 	annotation PBI_ResultType = Table
 

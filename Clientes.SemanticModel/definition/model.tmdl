@@ -8,11 +8,12 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["Consulta1"]
+annotation PBI_QueryOrder = ["d_Clientes","Medidas"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
-ref table Consulta1
+ref table d_Clientes
+ref table Medidas
 
 ref cultureInfo pt-BR
 
